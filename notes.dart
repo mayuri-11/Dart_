@@ -1,0 +1,584 @@
+/*
+   
+      String? name;
+      name = null;
+      //name = 'mayuri';
+      print(name??"Error message"); 
+
+  */
+
+/*---------------------------------------------------------------------------
+
+// If Else statement 
+      int age = 18;
+      if(age <15){
+        print("You are teenager now");
+      }else{
+        print("You are not teen");
+      }
+  
+  
+      String someValue = 'Hi !';
+      if(someValue.endsWith('!')){
+        print("Wow");
+      }else{
+        print("nahaa");
+      }
+
+// Ternary Operator
+       someValue.endsWith('!')? print("Hello") : print("Not Hello");
+
+// Switch Statement
+      String someValue = 'Hi !';
+      int age = 12;
+      switch(someValue){
+        case "Hi" when age > 15 : print("What the F**k");
+        case "Hi !":print("Woooow");
+        case "hi !!":print("Wooooooow");
+        default:print("Shit");
+      }
+      
+      // ---> When you have empty case that time you need to add break 
+      
+---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------
+// For loop
+      for(int i = 0;i<5;i++){
+        print("Hello World");
+      }
+
+      String name = "Mayuri";
+      for(int j = 0;j<name.length;j++){
+        print(name[j]);
+      }
+      
+  
+// While Loop
+      int number = 1;
+      while(number < 5){
+        print("Hello world");
+        number++;
+      }
+      
+// Do While Loop      
+      
+        int number = 1;
+        do{
+          print(number);
+          number++;
+        }while(number <=10);
+
+// Continue keyword
+
+      for(int i=1;i<=5;i++){
+       if(i == 3 || i == 5){
+         continue;
+        }
+       print(i);
+      }
+      
+--------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------
+ 
+// Functions
+ 1)
+ void printTable(int n){
+    for(int i=1;i<=10;i++){
+      print('$n * $i = ${i*n}');
+    }
+ }
+
+2)
+String name(){
+  return 'MAYURI';
+}
+ 
+3) -----> WE can return more than one data type in function and it is called as 
+          tuple type function OR Records.
+
+          void main(){
+              print(namePrint);
+          }
+
+          (int, String) namePrint(){
+            return (12,'mayuri');
+          }
+
+-----------> In tuple type function by using $ symbol and position we can access that
+          particular value
+          
+            void main(){
+              var whatEver = namePrint();
+              print(whatEver.$2);
+            }
+
+            (int, String) namePrint(){
+              return (12,'mayuri');
+            }
+            
+            
+-----------> named Records
+              void main(){
+                var info = intro();
+                print(info);
+                print(info.age);
+                print(info.name);
+              }
+
+              ({int? age,String? name})intro(){
+                  return (age : 18,name : "MAYURI");
+              }
+            
+-----------> Another way to access particular value in positional records
+
+            void main(){
+              var (name , age) = intro();
+              print(name);
+              print(age);
+
+            }
+
+            (String, int) intro(){
+              return ('MAYURI',18);
+            }
+          
+----------->Given function return null or String
+           void main(){
+              print(name());
+            }
+
+            String? name(){
+              return 'mayuri';
+            }
+
+
+4)-------->Passing positional arguments
+
+            void main(){
+              int ans = sum(12,45);
+              print(ans);
+
+            }
+
+            int sum(int a,int b){
+              return a+b;
+            }
+ 
+ -----------> Passing named arguments (Here required keyword is used to say given
+              value is must you need to enter & if you don't want required that 
+              time you can use ? after datatype)
+             
+             void main(){
+              int ans = sum(a:12,b:45);
+              print(ans);
+
+              }
+
+              int sum({required int a,required int b}){
+                return a+b;
+              }
+ 
+------------> named argument + positional argument 
+              void main(){
+               intro('Hello !',name : 'MAYURI',age:18);
+              }
+
+              void intro(String greeting,{required name , int? age}){
+                print('$greeting My name is $name and  i am $age year old');
+              }
+
+------------> A function return function
+              
+              void main(){
+               var name = printStuff();
+               name();
+              }
+              Function printStuff(){
+                print("Hell0");
+                return(){
+                  print("MAYURI");
+                };
+              }
+
+              void main(){
+                var ans = sum(12,45);
+                ans();
+              }
+
+              Function sum(int a,int b){
+                print("Sum is:");
+                return(){
+                  print(a+b);
+                };
+              }
+              
+--------------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------------
+ // Classes And Objects
+ 1)
+           void main(){
+            // creating a object of class Cookies
+            Cookies choco = Cookies();
+            print(choco.shape);
+            print(choco.size);
+            choco.baking();
+            print(choco.isCooling());
+          }
+
+          class Cookies{
+            String shape = 'Circle';
+            double size = 15.2;// cm
+
+            void baking(){
+              print("It is just started");
+            }
+
+            bool isCooling(){
+              return false;
+            }
+          }
+
+ 2) Constructors in class
+ 
+           void main(){
+            // creating a object choco of class Cookies
+            Cookies choco = Cookies('Circle',12.5);
+            print(choco.shape);
+            print(choco.size);
+
+          }
+
+          class Cookies{
+            String shape;
+            double size ;
+             
+            // constructor of class
+            Cookies(this.shape,this.size){
+                baking();
+                print(isCooling());
+            }
+
+            void baking(){
+              print("It is just started");
+            }
+
+            bool isCooling(){
+              return false;
+            }
+          }
+          
+------------> Named constructors
+          void main(){
+            Bakery Cookie = Bakery(itemNumber : 2,price:12);
+            Bakery Cake = Bakery(itemNumber : 13,price:10);
+
+
+          }
+
+          class Bakery{
+            
+            ---------> If you use Final keyword in constructore 
+            that clas known as "Immutable class".
+            
+            final int itemNumber;
+            final double price;
+
+            Bakery({required this.itemNumber,required this.price}){
+              print('you need to pay ${price * itemNumber} \$ for you order 
+              $itemNumber item');
+
+            }
+          }
+  
+ ------------> Getters and setters
+  
+               void main(){
+                    final cake = Bakery();
+                    print(cake.height);
+                    cake.setHeight = 10;
+                    print(cake.height);
+                    
+                }
+
+              class Bakery{
+
+                // Private variable
+                //----> private variable are private to file not to class
+
+                int _height = 14;
+                  //   String _name = 'MAYURI';
+                  //   double _price = 10.89;
+                  //   int _size = 12;
+
+                // Getters & Setters
+                //----> Gatters ara only changable in class
+                int get height => _height;
+                set setHeight(int h){
+                  _height = h;
+                }
+                }
+ ------------>Static variable & Static function
+               void main(){
+                print(Constants.age);
+                print(Constants.name);
+                Constants.printName();
+              }
+
+              class Constants{
+                static int age = 18;
+                static String name = 'MAYURI';
+                static void printName(){
+                  print('Hello my name is $name and i am $age year old');
+                }
+              }
+
+ Inheritance in Dart
+1)  
+     void main(){
+      Car car = Car();
+      print(car.speed);
+      car.accelerate();
+    }
+
+    class Vehicle{
+        int speed = 10;
+        bool isEngineWorking = false;
+        bool isLightOn = true;
+
+        void accelerate(){
+          speed = speed + 10;
+          print(speed);
+         }
+     }
+
+    class Car extends Vehicle{
+      int noOfWheels = 4;
+      void printSomething(){
+        print(noOfWheels);
+      }
+    } 
+
+
+ 2) -------> another way of accessing subclass using "as" keyword and at declaring part using super class
+
+           void main(){
+
+            Vehicle car = Car();
+            (car as Car).printSomething();
+          }
+
+          class Vehicle{
+            int speed = 10;
+            bool isEngineWorking = false;
+            bool isLightOn = true;
+
+            void accelerate(){
+              speed = speed + 10;
+              print(speed);
+             }
+          }
+
+          class Car extends Vehicle{
+            int noOfWheels = 4;
+            void printSomething(){
+              print(noOfWheels);
+            }
+          }    
+3) override class
+
+           void main(){
+              Car car = Car();
+              print(car.accelerate());
+
+            }
+
+            class SomeOne{
+              int speed = 10;
+              void accelerate(){
+                speed = speed + 20;
+                print(speed);
+              }
+            }
+
+            class Vehicle extends SomeOne{
+              bool isEngineWorking = false;
+              bool isLightOn = true;
+
+              @override
+              int accelerate(){
+                speed = speed + 10;
+                return speed;
+               }
+            }
+
+            class Car extends Vehicle{
+              int noOfWheels = 4;
+              void printSomething(){
+                print(noOfWheels);
+              }
+            }    
+
+
+ -------------------------------------------------------------------------------*/
+/* -------------------------------------------------------------------------------
+Abstract Class in dart
+
+void main(){
+ Car car = Car();
+  car.accelarate();
+}
+
+class Other{
+  void accelarate(){
+    print("Car isssss");
+  }
+}
+class Vehicle {
+  bool isEngineWorking = false;
+  bool isLightOn = true;
+  int numberOfWheel = 13;
+
+}  
+class Car extends Vehicle implements Other{
+  @override
+  void accelarate(){
+    print("Hello");
+    print(isEngineWorking);
+    print(numberOfWheel);
+  }
+
+}    
+-------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+--------> List in dart
+void main() {
+  List list = [12,34,"Mayuri",false,10.89000];
+  List <int> number = [12,56,89,99];
+
+  print(number);
+  print(list[0]);
+}
+
+--------> Generics<> in dart
+void main() {
+  Student s1 = Student("MAyuri");
+  // Or
+  Student s2 = Student(12);
+  
+
+}
+
+class Student <T>{
+  final T basicInfo;
+  Student(this.basicInfo);
+
+}
+
+----------> List of object
+1)
+void main() {
+  List<Animal> list=[
+    Animal("Tiger"),
+    Animal("Lion"),
+    Animal("Zebra"),
+    Animal("Hippo"),
+    Animal("Rabbit")
+  ];
+
+  print(list[0].name);
+  list[0].printName();
+
+  print(list[4].name);
+
+
+}
+class Animal{
+  String? name;
+  Animal(this.name);
+  void printName(){
+    print("Animal is $name");
+  }
+
+}
+
+
+
+2)
+void main() {
+  List<Animal> list=[
+    Animal("Tiger"),
+    Animal("Lion"),
+    Animal("Zebra"),
+    Animal("Hippo"),
+    Animal("Rabbit")
+  ];
+
+}
+class Animal{
+  String? name;
+  Animal(this.name){
+    print("Animal is $name");
+  }
+
+}
+
+3)
+void main() {
+ List <Student> child = [
+  Student("Mayuri",15),
+  Student("Diya",20),
+  Student("Dev",5),
+  Student("vaishali",7)
+];
+
+  List<Student> filter = [];
+
+  for(int i=0;i<child.length;i++){
+    if(child[i].marks > 10){
+      filter.add(child[i]);
+    }
+  }
+
+  print(filter);
+}
+
+class Student{
+  String name;
+  int marks;
+
+  Student(this.name,this.marks);
+
+  @override
+  String toString() => "Student : $name Marks :$marks";
+}
+
+
+-------------------------------------------------------------------------------*/
+void main() {
+  List<Animal> list=[
+    Animal("Tiger"),
+    Animal("Lion"),
+    Animal("Zebra"),
+    Animal("Hippo"),
+    Animal("Rabbit")
+  ];
+
+  print(list[0].name);
+  list[0].printName();
+
+  print(list[4].name);
+
+
+}
+
+class Animal{
+  String? name;
+  Animal(this.name);
+  void printName(){
+    print("Animal is $name");
+  }
+
+}
